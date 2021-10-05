@@ -60,7 +60,8 @@ contract("SimpleBank", function (accounts) {
 
   it("should deposit correct amount", async () => {
     await instance.enroll({ from: alice });
-    await instance.deposit({ from: alice, value: deposit });
+    const one = await instance.deposit({ from: alice, value: deposit });
+    // console.log(one)
     const balance = await instance.getBalance.call({ from: alice });
 
     assert.equal(
@@ -77,6 +78,7 @@ contract("SimpleBank", function (accounts) {
     const expectedEventResult = { accountAddress: alice, amount: deposit };
 
     const logAccountAddress = result.logs[0].args.accountAddress;
+    // console.log(logAccountAddress)
     const logDepositAmount = result.logs[0].args.amount.toNumber();
 
     assert.equal(
@@ -96,8 +98,10 @@ contract("SimpleBank", function (accounts) {
     const initialAmount = 0;
     await instance.enroll({ from: alice });
     await instance.deposit({ from: alice, value: deposit });
-    await instance.withdraw(deposit, { from: alice });
+    const withdraw = await instance.withdraw(deposit, { from: alice });
+    // console.log(withdraw)
     const balance = await instance.getBalance.call({ from: alice });
+    // console.log("current balance",balance)
 
     assert.equal(
       balance.toString(),
@@ -117,6 +121,7 @@ contract("SimpleBank", function (accounts) {
     await instance.enroll({ from: alice });
     await instance.deposit({ from: alice, value: deposit });
     var result = await instance.withdraw(deposit, { from: alice });
+    console.log(result.logs[0].args)
 
     const accountAddress = result.logs[0].args.accountAddress;
     const newBalance = result.logs[0].args.newBalance.toNumber();
