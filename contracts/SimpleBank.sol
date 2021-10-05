@@ -34,7 +34,7 @@ contract SimpleBank {
     event LogEnrolled(address indexed _sender);
 
     // Add 2 arguments for this event, an accountAddress and an amount
-    event LogDepositMade(address indexed sender, uint value);
+    event LogDepositMade(address indexed accountAddress, uint amount);
 
     // Create an event called LogWithdrawal
     // Hint: it should take 3 arguments: an accountAddress, withdrawAmount and a newBalance 
