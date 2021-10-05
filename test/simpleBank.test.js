@@ -121,10 +121,11 @@ contract("SimpleBank", function (accounts) {
     await instance.enroll({ from: alice });
     await instance.deposit({ from: alice, value: deposit });
     var result = await instance.withdraw(deposit, { from: alice });
+    console.log(result.logs[0].args)
 
-    const accountAddress = result.logs[0].args.receiver;
+    const accountAddress = result.logs[0].args.accountAddress;
     const newBalance = result.logs[0].args.newBalance.toNumber();
-    const withdrawAmount = result.logs[0].args.value.toNumber();
+    const withdrawAmount = result.logs[0].args.withdrawAmount.toNumber();
 
     const expectedEventResult = {
       accountAddress: alice,

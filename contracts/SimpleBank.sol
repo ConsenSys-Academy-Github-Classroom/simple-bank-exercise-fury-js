@@ -38,7 +38,7 @@ contract SimpleBank {
 
     // Create an event called LogWithdrawal
     // Hint: it should take 3 arguments: an accountAddress, withdrawAmount and a newBalance 
-    event LogWithdrawal( address indexed receiver, uint value, uint newBalance);
+    event LogWithdrawal( address indexed accountAddress, uint withdrawAmount, uint newBalance);
 
     /* Functions
      */
